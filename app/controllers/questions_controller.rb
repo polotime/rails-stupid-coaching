@@ -1,11 +1,15 @@
 class QuestionsController < ApplicationController
   def ask
-    #@questions = ["I am going to work"]
   end
 
   def answer
-    @answers = ["Great!", "?", "I don't care, get dressed and go to work!"]
-    @messages = params[:message]
-    @answers = @messages.select { |message| message(params[:message]) }
+    @question = params[:question]
+    if @question == "I am going to work"
+      @answer = "Great!"
+    elsif @question.end_with?("?")
+      @answer = "Silly question, get dressed and go to work!"
+    else
+      @answer = "I don't care, get dressed and go to work!"
+    end
   end
 end
